@@ -1,6 +1,6 @@
 {
-  "name": "basestruct",
-  "version": "0.0.1",
+  "name": "BaseStruct",
+  "version": "0.0.1-alpha",
   "description": "Base Structure for Client Web Applications",
   "main": "",
   "devDependencies": {

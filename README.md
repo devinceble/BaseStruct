@@ -1,18 +1,19 @@
 #BaseStruct
 Base Structure for Client Web Applications
 
-### Building the game
+### Building Dependencies and Structure
 
 Dependencies
     - node.js
         - npm
         - bower
         - gulp
-
+    - java
+        - jre
 Install Build Dependencies
 
 ```bash
-Vendors Library Dependencirs
+Vendors Library Dependencies
 $ bower install
 
 Development Dependencies
@@ -48,6 +49,9 @@ Unit Test
 $ gulp unit-test
 
 E2E Test
+$ webdriver-manager update
+# update may not download the selenium server jar file please
+# downloaded it manually
 $ webdriver-manager start
 $ protractor protractor.config.coffee
 ```

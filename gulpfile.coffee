@@ -17,14 +17,14 @@ protractor = require('gulp-protractor').protractor
 
 paths =
   vendor: [
-    'app/bower_components/angular/angular.js'
-    'app/bower_components/angular-ui-router/release/angular-ui-router.js'
-    'app/bower_components/phaser/build/phaser.js'
+    'bower_components/angular/angular.js'
+    'bower_components/angular-ui-router/release/angular-ui-router.js'
+    'bower_components/phaser/build/phaser.js'
   ]
   vendormin: [
-    'app/bower_components/angular/angular.min.js'
-    'app/bower_components/angular-ui-router/release/angular-ui-router.min.js'
-    'app/bower_components/phaser/build/phaser.min.js'
+    'bower_components/angular/angular.min.js'
+    'bower_components/angular-ui-router/release/angular-ui-router.min.js'
+    'bower_components/phaser/build/phaser.min.js'
   ]
   debug: './package/debug'
   release: './package/release'
