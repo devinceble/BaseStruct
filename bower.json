@@ -1,0 +1,44 @@
+{
+  "name": "basestruct",
+  "version": "0.0.1",
+  "authors": [
+    "Leivince John D. Marte <devinceble@gmail.com>"
+  ],
+  "description": "Base Structure for Client Web Applications",
+  "main": "",
+  "keywords": [
+    "boostrap",
+    "base"
+  ],
+  "license": "NONE",
+  "homepage": "NONE",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.21",
+    "angular-animate": "~1.2.21",
+    "angularfire": "~0.7.1",
+    "angular-media-player": "~0.5.5",
+    "angular-resource": "~1.2.21",
+    "angular-scroll": "~0.6.1",
+    "angular-timer": "~1.1.6",
+    "angular-toastr": "~0.3.0",
+    "angular-ui-router": "~0.2.10",
+    "bootstrap": "~3.2.0",
+    "firebase": "~1.0.18",
+    "firebase-simple-login": "~1.6.2",
+    "font-awesome": "~4.1.0",
+    "jquery": "~2.1.1",
+    "phaser": "~2.0.4",
+    "semantic-ui": "~0.19.0",
+    "breeze.js.labs": "~1.3.5",
+    "breezejs": "~1.4.16"
+  }
+}

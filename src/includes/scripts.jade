@@ -1,0 +1,12 @@
+if debug
+    script(src="scripts/vendors/phaser.js")
+    script(src="scripts/vendors/angular.js")
+    script(src="scripts/vendors/angular-ui-router.js")
+
+    script(src="scripts/appClient.js")
+    script(src="scripts/controllers/homeCtrl.js")
+
+    script(src="scripts/states/boot.js")
+else
+    script(src="scripts/vendors.min.js")
+    script(src="scripts/appClient.min.js")
