@@ -4,12 +4,15 @@ Base Structure for Client Web Applications
 ### Building Dependencies and Structure
 
 Dependencies
+```
     - node.js
         - npm
         - bower
         - gulp
     - java
         - jre
+```
+
 Install Build Dependencies
 
 ```bash
@@ -45,13 +48,12 @@ $ gulp zip-release
 Testing Unit and E2E
 
 ```bash
+ALL Test
+$ gulp test
+
 Unit Test
 $ gulp unit-test
 
 E2E Test
-$ webdriver-manager update
-# update may not download the selenium server jar file please
-# downloaded it manually
-$ webdriver-manager start
-$ protractor protractor.config.coffee
+$ gulp e2e-test
 ```
