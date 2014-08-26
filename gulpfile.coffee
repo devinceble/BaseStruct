@@ -120,6 +120,7 @@ gulp.task 'zip-release', ->
 
 gulp.task 'debug', ['jade-debug', 'coffee-debug', 'less-debug', 'vendors-debug']
 gulp.task 'build', ['jade-build', 'coffee-build', 'less-build', 'vendors-build']
+gulp.task 'test', ['unit-test', 'e2e-test']
 
 gulp.task 'default' , ['debug', 'build']
 # debug -> build with sourcemaps easy development
@@ -144,7 +145,7 @@ e2eTest = [
 gulp.task 'e2e-test', ->
   gulp.src e2eTest
     .pipe protractor
-      configFile: 'protractor.config.js'
+      configFile: 'protractor.config.coffee'
     .on 'error', (err)->
       throw err
   true
