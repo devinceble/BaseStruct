@@ -14,6 +14,7 @@ config = require './package.json'
 
 karma = require 'gulp-karma'
 protractor = require('gulp-protractor').protractor
+serve = require 'gulp-serve'
 
 paths =
   vendor: [
@@ -36,11 +37,11 @@ jadevar =
   debug:
     pretty: true
     locals:
-      the_title: "GoEngas API Client - debug"
+      the_title: "BaseStruct Client"
       debug: true
   release:
     locals:
-      the_title: "GoEngas API Client"
+      the_title: "BaseStruct Client"
       debug: false
 
 gulp.task 'clean', ->
@@ -120,11 +121,18 @@ gulp.task 'zip-release', ->
 
 gulp.task 'debug', ['jade-debug', 'coffee-debug', 'less-debug', 'vendors-debug']
 gulp.task 'build', ['jade-build', 'coffee-build', 'less-build', 'vendors-build']
-gulp.task 'test', ['unit-test', 'e2e-test']
+gulp.task 'test', ['unit-test', 'e2e-debug']
 
 gulp.task 'default' , ['debug', 'build']
 # debug -> build with sourcemaps easy development
 # build -> build without sourcemaps production
+
+gulp.task 'serve-debug', serve
+  root: 'package/debug/'
+  port: 8000
+gulp.task 'serve-release', serve
+  root: 'package/release/'
+  port: 8000
 
 unitTest = [
   'test/unit/**/*Spec.coffee'
@@ -142,7 +150,15 @@ e2eTest = [
   'test/e2e/*.coffee'
 ]
 
-gulp.task 'e2e-test', ->
+gulp.task 'e2e-debug', ['serve-debug'], ->
+  gulp.src e2eTest
+    .pipe protractor
+      configFile: 'protractor.config.coffee'
+    .on 'error', (err)->
+      throw err
+  true
+
+gulp.task 'e2e-release', ['serve-release'], ->
   gulp.src e2eTest
     .pipe protractor
       configFile: 'protractor.config.coffee'
