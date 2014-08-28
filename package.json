@@ -10,6 +10,7 @@
     "gulp-coffee": "^2.1.2",
     "gulp-concat": "^2.3.4",
     "gulp-data": "^1.0.2",
+    "gulp-exit": "0.0.2",
     "gulp-imagemin": "^1.0.1",
     "gulp-jade": "^0.7.0",
     "gulp-karma": "0.0.4",
@@ -21,6 +22,7 @@
     "gulp-serve": "^0.2.0",
     "gulp-sourcemaps": "^1.1.1",
     "gulp-uglify": "^0.3.2",
+    "gulp-watch": "^0.6.9",
     "gulp-zip": "^2.0.1",
     "jade": "^1.5.0",
     "karma": "^0.12.22",
@@ -40,5 +42,6 @@
     "base"
   ],
   "author": "Leivince John D. Marte (devinceble@gmail.com)",
-  "license": "MIT"
+  "license": "MIT",
+  "private": true
 }

@@ -14,4 +14,5 @@ appClient.controller "HomeCtrl", ($scope)->
   @game.state.add 'boot', new BootState, true
   # @game.state.add 'preloader', new PreloaderState, true
   @game.state.start 'boot'
+
   true
