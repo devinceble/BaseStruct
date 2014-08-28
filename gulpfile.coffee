@@ -153,7 +153,7 @@ gulp.task 'unit-test', ->
       throw err
 
 e2eTest = [
-  'test/e2e/*.coffee'
+  'test/e2e/**/*.coffee'
 ]
 
 gulp.task 'e2e-debug', ['serve-debug'], ->

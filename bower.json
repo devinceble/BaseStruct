@@ -40,6 +40,7 @@
     "breeze.js.labs": "~1.3.5",
     "breezejs": "~1.4.17",
     "famous": "~0.2.2",
-    "famous-angular": "~0.3.0"
+    "famous-angular": "~0.3.0",
+    "angular-mocks": "~1.2.23"
   }
 }
