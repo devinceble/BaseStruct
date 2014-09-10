@@ -14,6 +14,9 @@ config = require './package.json'
 
 karma = require 'gulp-karma'
 protractor = require('gulp-protractor').protractor
+serve = require 'gulp-serve'
+exit = require 'gulp-exit'
+watch = require 'gulp-watch'
 
 paths =
   vendor: [
@@ -28,7 +31,8 @@ paths =
   ]
   debug: './package/debug'
   release: './package/release'
-  jade: './src/*.jade'
+  jade: './src/*.jade',
+  jadein: './src/**/*.jade'
   coffee: './src/**/*.coffee'
   less: './src/**/*.less'
 
@@ -36,55 +40,70 @@ jadevar =
   debug:
     pretty: true
     locals:
-      the_title: "GoEngas API Client - debug"
+      the_title: "BaseStruct Client"
       debug: true
   release:
     locals:
-      the_title: "GoEngas API Client"
+      the_title: "BaseStruct Client"
       debug: false
 
+e2eTest = [
+  'test/e2e/**/*.coffee'
+]
+
+unitTest = [
+  'test/unit/**/*Spec.coffee'
+]
+
 gulp.task 'clean', ->
-  gulp.src('package', {read: false})
+  gulp.src('package/**', {read: false})
     .pipe clean({force: true})
     .pipe gulp.dest '.'
 
-gulp.task 'vendors-debug', ['clean'], ->
+gulp.task 'vendors-debug', ->
   gulp.src paths.vendor
     .pipe gulp.dest paths.debug + '/scripts/vendors'
   true
 
-gulp.task 'jade-debug', ['clean'], ->
+gulp.task 'jade-debug', ->
   gulp.src paths.jade
     .pipe sourcemaps.init()
     .pipe jade jadevar.debug
+      .on 'error', (err)->
+        console.log 'Check Jade Files'
     .pipe sourcemaps.write '.'
     .pipe gulp.dest paths.debug
   true
 
-gulp.task 'coffee-debug', ['clean'], ->
+gulp.task 'coffee-debug', ->
   gulp.src paths.coffee
     .pipe sourcemaps.init()
     .pipe coffee({bare:true})
+      .on 'error', (err)->
+        console.log 'Check CoffeeScripts'
     .pipe ngannotate()
     .pipe sourcemaps.write '.'
     .pipe gulp.dest paths.debug
   true
 
-gulp.task 'less-debug', ['clean'], ->
+gulp.task 'less-debug', ->
   gulp.src paths.less
     .pipe sourcemaps.init()
     .pipe less()
+      .on 'error', ->
+        console.log "Check Less Files"
     .pipe sourcemaps.write '.'
     .pipe gulp.dest paths.debug
+
   true
 
-gulp.task 'jade-build', ['clean'], ->
+gulp.task 'jade-build', ->
   gulp.src paths.jade
     .pipe jade jadevar.release
     .pipe gulp.dest paths.release
   true
 
-gulp.task 'coffee-build', ['clean'], ->
+gulp.task 'coffee-build', ->
   gulp.src paths.coffee
     .pipe coffee({bare:true})
     .pipe ngannotate()
@@ -93,7 +112,7 @@ gulp.task 'coffee-build', ['clean'], ->
     .pipe gulp.dest paths.release
   true
 
-gulp.task 'less-build', ['clean'], ->
+gulp.task 'less-build', ->
   gulp.src paths.less
     .pipe less()
     .pipe concat('styles/main.min.css')
@@ -101,7 +120,7 @@ gulp.task 'less-build', ['clean'], ->
     .pipe gulp.dest paths.release
   true
 
-gulp.task 'vendors-build', ['clean'], ->
+gulp.task 'vendors-build', ->
   gulp.src paths.vendormin
     .pipe concat('scripts/vendors.min.js')
     .pipe uglify()
@@ -118,16 +137,20 @@ gulp.task 'zip-release', ->
     .pipe zip 'release-'+config.version+'.zip'
     .pipe gulp.dest './package'
 
-gulp.task 'debug', ['jade-debug', 'coffee-debug', 'less-debug', 'vendors-debug']
-gulp.task 'build', ['jade-build', 'coffee-build', 'less-build', 'vendors-build']
+gulp.task 'debug', ['coffee-debug', 'less-debug', 'vendors-debug', 'jade-debug']
+gulp.task 'release', ['coffee-build', 'less-build', 'vendors-build', 'jade-build']
+gulp.task 'test', ['unit-test', 'e2e-debug']
 
-gulp.task 'default' , ['debug', 'build']
+gulp.task 'default' , ['debug', 'release']
 # debug -> build with sourcemaps easy development
 # build -> build without sourcemaps production
 
-unitTest = [
-  'test/unit/**/*Spec.coffee'
-]
+gulp.task 'serve-debug', serve
+  root: 'package/debug/'
+  port: 8000
+gulp.task 'serve-release', serve
+  root: 'package/release/'
+  port: 8000
 
 gulp.task 'unit-test', ->
   gulp.src unitTest
@@ -137,14 +160,25 @@ gulp.task 'unit-test', ->
     .on 'error', (err)->
       throw err
 
-e2eTest = [
-  'test/e2e/*.coffee'
-]
-
-gulp.task 'e2e-test', ->
+gulp.task 'e2e-debug', ['serve-debug'], ->
   gulp.src e2eTest
-    .pipe protractor
-      configFile: 'protractor.config.js'
-    .on 'error', (err)->
-      throw err
+    .pipe protractor configFile: 'protractor.config.coffee'
+      .on 'error', (err)->
+        throw err
+    .pipe exit()
   true
+
+gulp.task 'e2e-release', ['serve-release'], ->
+  gulp.src e2eTest
+    .pipe protractor configFile: 'protractor.config.coffee'
+      .on 'error', (err)->
+        throw err
+    .pipe exit()
+  true
+
+gulp.task 'watch', ->
+  gulp.watch(paths.coffee, ['coffee-debug'])
+  gulp.watch(paths.jadein, ['jade-debug'])
+  gulp.watch(paths.less, ['less-debug'])
+  livereload.listen()
+  gulp.watch(['package/**']).on('change', livereload.changed)

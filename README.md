@@ -1,15 +1,22 @@
 #BaseStruct
 Base Structure for Client Web Applications
 
+My personal Starter Kit for Building Client Web Application and PhaserJS Game
+
 ### Building Dependencies and Structure
 
 Dependencies
+```
     - node.js
         - npm
+            - check: npm list
         - bower
+            - check: bower list
         - gulp
     - java
-        - jre
+        - jre //for selenium testing
+```
+
 Install Build Dependencies
 
 ```bash
@@ -45,13 +52,14 @@ $ gulp zip-release
 Testing Unit and E2E
 
 ```bash
+ALL Test
+$ gulp test
+
 Unit Test
 $ gulp unit-test
 
 E2E Test
-$ webdriver-manager update
-# update may not download the selenium server jar file please
-# downloaded it manually
-$ webdriver-manager start
-$ protractor protractor.config.coffee
+$ gulp e2e-test
 ```
+
+####Changelog
