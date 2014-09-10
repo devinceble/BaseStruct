@@ -1,16 +1,20 @@
 #BaseStruct
 Base Structure for Client Web Applications
 
+My personal Starter Kit for Building Client Web Application and PhaserJS Game
+
 ### Building Dependencies and Structure
 
 Dependencies
 ```
     - node.js
         - npm
+            - check: npm list
         - bower
+            - check: bower list
         - gulp
     - java
-        - jre
+        - jre //for selenium testing
 ```
 
 Install Build Dependencies
@@ -57,3 +61,5 @@ $ gulp unit-test
 E2E Test
 $ gulp e2e-test
 ```
+
+####Changelog
