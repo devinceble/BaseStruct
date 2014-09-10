@@ -5,7 +5,7 @@ My personal Starter Kit for Building Client Web Application and PhaserJS Game
 
 ### Building Dependencies and Structure
 
-Dependencies
+####Dependencies
 ```
     - node.js
         - npm
@@ -17,7 +17,7 @@ Dependencies
         - jre //for selenium testing
 ```
 
-Install Build Dependencies
+####Install Build Dependencies
 
 ```bash
 Vendors Library Dependencies
@@ -27,7 +27,7 @@ Development Dependencies
 $ npm install
 ```
 
-Building
+####Building
 ```bash
 Build All Packages
 $ gulp
@@ -39,7 +39,7 @@ Build Release Package
 $ gulp build
 ```
 
-Packaging Zip
+####Packaging Zip
 
 ```bash
 Package Debug
@@ -49,7 +49,7 @@ Package Release
 $ gulp zip-release
 ```
 
-Testing Unit and E2E
+####Testing Unit and E2E
 
 ```bash
 ALL Test
@@ -62,4 +62,13 @@ E2E Test
 $ gulp e2e-test
 ```
 
-####Changelog
+###Changelog
+####v0.0.2
+* Update Vendor Dependencies for bower and npm
+
+####v0.0.1update
+* Update Unit-Testing
+* Fixed Protractor Testing
+
+####v0.0.1
+* Basic Base Structure
