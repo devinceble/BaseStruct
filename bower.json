@@ -45,6 +45,7 @@
     "peerjs": "~0.3.9",
     "sockjs-client": "~0.3.4",
     "angular-sockjs": "~0.0.1",
-    "jsjws": "~3.0.2"
+    "jsjws": "~3.0.2",
+    "angular-websql": "~1.0.2"
   }
 }
