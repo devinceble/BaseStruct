@@ -1,0 +1,1 @@
+appClient = angular.module('baseStruct')

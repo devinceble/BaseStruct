@@ -4,11 +4,14 @@ if debug
     script(src="scripts/vendors/angular-ui-router.js")
 
     script(src="scripts/appClient.js")
-    script(src="scripts/controllers/homeCtrl.js")
+
+    script(src="scripts/home/homeController.js")
+    script(src="scripts/home/homeDirective.js")
+    script(src="scripts/home/homeService.js")
 
     script(src="scripts/states/boot.js")
 
-    script(src="http://192.168.0.7:35729/livereload.js?snipver=1")
+    //- script(src="http://192.168.0.7:35729/livereload.js?snipver=1")
 else
     script(src="scripts/vendors.min.js")
     script(src="scripts/appClient.min.js")
