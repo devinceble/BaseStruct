@@ -41,11 +41,13 @@ jadevar =
   debug:
     pretty: true
     locals:
-      the_title: "BaseStruct Client"
+      the_title: config.title
+      the_version: config.version
       debug: true
   release:
     locals:
-      the_title: "BaseStruct Client"
+      the_title: config.title
+      the_version: config.version
       debug: false
 
 e2eTest = [
