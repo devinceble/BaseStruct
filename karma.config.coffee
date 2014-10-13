@@ -14,10 +14,15 @@ module.exports = (config) ->
     frameworks: ['jasmine']
 
 
-    # list of files / patterns to load in the browser
-    files: [
-      'test/unit/**/*Spec.coffee'
-    ]
+    # # list of files / patterns to load in the browser
+    # files: [
+    #   'bower_components/phaser/build/phaser.js'
+    #   'package/debug/scripts/vendors/angular.js'
+    #   'bower_components/angular-mocks/angular-mocks.js'
+    #   'package/debug/scripts/vendors/angular-ui-router.js'
+    #   'package/debug/scripts/**/*.js'
+    #   'test/unit/**/*Spec.coffee'
+    # ]
 
 
     # list of files to exclude
@@ -62,7 +67,7 @@ module.exports = (config) ->
 
     # start these browsers
     # available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome']
+    browsers: ['Chrome', 'Firefox']
 
 
     # Continuous Integration mode

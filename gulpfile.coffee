@@ -34,17 +34,20 @@ paths =
   jade: './src/*.jade',
   jadein: './src/**/*.jade'
   coffee: './src/**/*.coffee'
-  less: './src/**/*.less'
+  less: './src/styles/main.less'
+  lesspath: 'bower_components/bootstrap/less'
 
 jadevar =
   debug:
     pretty: true
     locals:
-      the_title: "BaseStruct Client"
+      the_title: config.title
+      the_version: config.version
       debug: true
   release:
     locals:
-      the_title: "BaseStruct Client"
+      the_title: config.title
+      the_version: config.version
       debug: false
 
 e2eTest = [
@@ -52,11 +55,16 @@ e2eTest = [
 ]
 
 unitTest = [
+  'bower_components/phaser/build/phaser.js'
+  'package/debug/scripts/vendors/angular.js'
+  'bower_components/angular-mocks/angular-mocks.js'
+  'package/debug/scripts/vendors/angular-ui-router.js'
+  'package/debug/scripts/**/*.js'
   'test/unit/**/*Spec.coffee'
 ]
 
 gulp.task 'clean', ->
-  gulp.src('package/**', {read: false})
+  gulp.src('package/', {read: false})
     .pipe clean({force: true})
     .pipe gulp.dest '.'
 
@@ -90,10 +98,10 @@ gulp.task 'less-debug', ->
   gulp.src paths.less
     .pipe sourcemaps.init()
     .pipe less()
-      .on 'error', ->
-        console.log "Check Less Files"
+      .on 'error', (err)->
+        console.log err
     .pipe sourcemaps.write '.'
-    .pipe gulp.dest paths.debug
+    .pipe gulp.dest paths.debug + "/styles"
 
   true
 
