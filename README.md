@@ -63,6 +63,13 @@ $ gulp e2e-test
 ```
 
 ###Changelog
+
+####v0.0.3
+
+    [x] Update Unit and E2E Test Karma and Protractor
+    [x] Group Directory By Feature
+    [x] Clean Up bower.json for minimal dependencies use bower to add more libraries
+
 ####v0.0.2
 * Update Vendor Dependencies for bower and npm
 
